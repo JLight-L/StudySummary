@@ -1,0 +1,324 @@
+- 什么是光（light）？
+	- waves
+		- 波长、频率
+	- quantum particle
+- 光的产生
+	- 跃迁——两个或多个能级之间，如原子能级等，包括激光等
+	- 热辐射，如电灯泡
+	
+# 一维波动（One-dimensional Wave）
+- **定义**：在介质中持续传播的扰动（a self-sustaining disturbance of the medium through which it propagates（传播））
+- $\psi(x,t)=\psi(x',0)=f(x'),x'=x-vt$ 
+- **输运方程（transport equation）**
+	- $\frac{ \partial \psi }{ \partial t }=\pm v \frac{ \partial \psi }{ \partial x }$ 
+	- 解为：$\psi(x,t) = f(x \pm vt)$ 
+	- 代表的是**定向传播**， $v$ 为传播速度。（ $x$ 处 $\psi$ 的增加源于附近的 $\psi$ 的减少）
+- **波动方程**
+	- $\frac{ \partial^2 \psi }{ \partial x^2 }=\frac{1}{v^{2}}\frac{ \partial^2 \psi }{ \partial t^2 }$ 
+	- 解为：$\psi(x,t) = f(x - vt) + g(x + vt)$
+- *Question* ：为什么不用输运方程来代表波？
+	- *Answer* ：输运方程通常表示的守恒量的**定向传输**；而波动方程代表的是介质的**动力学方程**（加速度 ~ 空间位移差），允许多个方向传播以及更复杂的波的特性（如*三维空间中的传播*），更能描述振动在介质中的传播。
+	- 最简单的例子：输运方程只需要一个初始条件，而波动方程需要两个初始条件
+- 简谐波（正弦波，harmonic wave，sinusoidal wave）
+	- $\psi = \cos(kx\pm\omega t+\varepsilon)$ 
+	-  $k$ 为波矢（wave vector）（$\frac{k}{2\pi}$ 为波数），$\omega$ 为角频率（$\frac{\omega}{2\pi}$ 为频率），$kx\pm\omega t+\varepsilon$ 为相位
+	- 波速（相速度（phase velocity）） $v=\frac{\omega}{k}$
+		- 有时对于一个介质而言，一种波的相速度与波的频率（或波数）有关，该关系被称为色散关系（dispersion relation），即 $\omega \sim k$ 关系
+- 波的叠加
+	- 两个波不相互影响时，直接线性相加（对应线性光学） $\psi=\psi_{1}+\psi_{2}$
+	- **拓展**：有时两个波会由于介质而产生一些相互作用（如介质中的电场），这时就不只是线性相加，会出现交叉项
+- 复数表示： $e$ 指数形式，取实部后会得到实数波
+
+# 三维波动
+- **平面波**
+	- **定义**：波前（同相位的点的集合）与波矢始终垂直，即 $\text{For }\mathbf{r} \in \text{wave front, }\mathbf{r}\cdot \mathbf{k} = const$； $\mathbf{k}$ 为波矢，代表传播方向
+	- $\psi = \cos(\mathbf{k}\cdot\mathbf{r}\pm\omega t+\varepsilon)$
+	- 平面波可以组合出所有三维的波形 #？？？
+- **三维波动方程**：$\nabla^{2}\psi=\frac{1}{v^{2}}\frac{ \partial^2 \psi }{ \partial t^2 }$ 
+- **球面波**
+	- 球对称性
+	- 波动方程可以变换成 $\frac{ \partial^2  }{ \partial r^2 }(r\psi)=\frac{1}{v^{2}}\frac{ \partial^2 }{ \partial t^2 }(r\psi)$
+	- 故波的形式为 $\psi(r,t)=\frac{A}{r}\cos(k(r\pm vt))$ ，随传播而衰减
+	- **平面波极限**：在 $r\to \infty$ 时，局域内呈现平面波特征
+
+
+# 电磁波
+- 由 Maxwell 方程得到，$\nabla^{2}\mathbf{E}=\varepsilon_{0}\mu_{0}\frac{ \partial^2 \mathbf{E} }{ \partial t^2 }$ ，磁场类似
+- 若延 $x$ 传播，有 $E_{z}(x,t)=cB_{y}(x,t)$ ，同相位
+- **注意**：电磁波不一定要以单频均匀平面波传播，这时电磁波的相速度（$\frac{k}{\omega}$）不一定等于光速！
+	- **例**：$E_{y}=E_{0}\sin\left( \frac{\pi z}{z_{0}} \right)\cos(kx-\omega t)$ ，相速度 $v=\frac{c}{\sqrt{ 1+\frac{\pi c^{2} }{ \omega^{2}z_{0}^{2}}}}$ 
+- 能量
+	- 能量密度（Energy density）
+		- $u_{E}=\frac{\varepsilon_{0}}{2}E^{2}$ 
+		- $u_{B}=\frac{1}{2\mu_{0}}B^{2}$ 
+		- 对于电磁波，$u_{E}=u_{B}$ 
+	- 坡印亭矢量（the Poynting Vector）
+		- **定义**：$\mathbf{S}=\frac{1}{\mu_{0}}\mathbf{E}\times \mathbf{B}$ 
+		- 电磁波能流密度
+- 动量
+	- 动量密度 $P_{v}=\frac{S}{c^{2}}$
+- 物质中的电磁波
+	- $v=\frac{1}{\sqrt{ \epsilon \mu }}$ 
+	- 物质界面间的电磁波效应（折射、反射等）可以由*电磁场边界条件*导出
+		- 菲涅尔公式：折反射的电磁场强度  【 #推导 】
+			- 由界面上的电磁场推导而来
+			- Brewster's Angle（起偏角，Polarization angle） $\theta_{p}$ ，这时反射光为线偏振光，偏振方向垂直入射面，即 $r_{||}=0$ ；且反射光和折射光垂直
+			- Critical angle：光密到光疏（$n_{t}<n_{i}$）时的全反射角
+		- 隐失波（evanescent wave）
+			-  #？？？ 为什么可以用复数形式的菲涅尔公式导出？
+			- 受挫全反射（frustrated total internal reflection，FTIR）：由于隐失波穿透中间介质而导致的透射
+				- 应用：分束镜（Beamsplitter）
+		- Goos-Hanchen Shift（位移）
+	- 金属中的光
+		- 自由电子（[Drude Model](固体物理课堂笔记.md#^3a83f6)，即可以产生电流，低频时（$\omega\ll\omega_{0}$）无相位落后，即 $j = \sigma E$ ）
+		- 穿透深度 $\delta=\frac{1}{\kappa}=\frac{c}{n_{I}\omega},\quad \kappa=\sqrt{ \frac{\sqrt{ 1+\left( \sigma/\varepsilon\omega \right)^{2} }-1}{2} }$ 
+		- 实际金属：自由电子（金属） + 束缚电子（[Lorentz model](#^080fd6)，半导体），$n^{2}(\omega)= \frac{\epsilon}{\epsilon_{0}}=1+\frac{Nq}{\epsilon_{0}m_{e}}\left( \frac{f_{e}}{-\omega^{2}+i\gamma_{e}\omega}+\sum _j \frac{f_{j}}{\omega_{0j}^{2}-\omega^{2}-i\gamma_{j}\omega} \right)$ 
+
+# 光子（Photon）
+- 全同玻色子，（能级间的分布）服从 B-E 分布
+	- 能量相近的光子趋向于形成凝聚态，更不易分离
+		- **例**：The Hong-Ou-Mandel Effect
+- 电磁理论在大量光子时成立
+- 会因为与带电粒子相互作用而湮灭或生成
+- **光场中光子的统计分布**
+	- *注*：这里指的是在一定范围内找到的光子数 $N$ 的分布 $P(N)$ 
+	- 相干光（coherent light）：“光子凝聚态（condensate of light）”，服从泊松分布，光子的发射完全独立
+		- **例**：激光（laser）
+	- 非相干光（incoherent light）：服从 B-E 分布，一个光子发射会影响其它光子发射的概率
+		- **例**：自发辐射（spontaneous emissions）
+- 能量与动量
+	- $E=h\nu=\hbar\omega$ ， $p = \frac{E}{c}=\hbar k$
+- Application：激光冷却
+	- 光子撞击以减速原子
+	- 通过磁场限制原子
+
+# 光与物质的相互作用
+- 光的辐射（Radiation）
+	- nonuniformly moving charge （即电荷速度变化）
+		- 垂直运动方向的能量最大
+	- electric dipole radiation （电偶极辐射）
+		- 电偶极振动产生的辐射
+- **光的散射（Scattering）**：光与物质相互作用的基本过程
+	- 光和微观粒子相互作用后继续传播的过程
+	- **散射的物理过程**：粒子（原子或分子短暂地吸收光后重新发射（absorption - re-emission））
+	- 几种散射过程：
+		- 入射频率（incident frequency） < 共振频率（激发到高能级需要的频率，resonance frequency）
+			- 散射频率 = 入射频率，即弹性散射（elastic scattering）
+		- 入射频率 = 共振频率
+			- 被吸收用于激发原子
+			- 通常由于碰撞等情况，能量发生其它形式的转化，不再辐射光，即 dissipated absorption
+		- 入射频率 > 共振频率
+			- Rayleigh scattering
+				- 散射频率 = 入射频率
+			- Stokes-Raman scattering
+				- 散射频率 < 入射频率，能量用于激发原子
+# 光的传播（propagation）
+- 光的色散（dispersion）
+	- $k=n\omega/c$ ， $v_{p}=\frac{k}{\omega},v_{g}=\frac{dk}{d\omega}$ 
+	- 色散源于物质的极化
+	- 电磁波下的分子极化 ^080fd6
+		- 受迫振动模型+考虑多种频率
+		- 若考虑阻尼， $n^{2}(\omega)= \frac{\epsilon}{\epsilon_{0}}=1+\frac{P(t)}{\epsilon_{0}E(t)}=1+\frac{Nq}{\epsilon_{0}m_{e}}\sum _j \frac{f_{j}}{\omega_{0j}^{2}-\omega^{2}-i\gamma_{j}\omega}$ ，其中 $\sum_{j}f_{j}=Z$ ， $Z$ 为每个分子电子数，$N$ 为分子数密度
+		- #？？？  $n$ 里的虚数什么意思？
+
+- 透射（transmission）、折射（reflaction）、反射（reflection）
+- 光的宏观过程可以看作多个微观散射过程的组合
+	- 在物质中的散射
+		- 物质中的每个粒子都是散射光的位点，（由于方向不确定）发出球面波（即 光子方向随机），散射后的光会发生**干涉**
+		- 仅在向前传播的方向有较好的相干性（因为所有向前传播的光 in-phase ，故相互之间相长）
+		- →**主要为向前的散射**
+		- **物质中分子分布越密，侧向的散射光越少**
+- **透射**：入射光+散射光
+	- 电子云振动的相位——受入射光场影响，影响散射光场
+		- phase shift（相位偏移）  【 #推导 】
+			- 源于电子的阻尼
+			-  #？？？ lead 和 leg 是如何导致的？如何影响物质中的波速？
+- **反射**：
+	- 由交界处约 $\frac{\lambda}{4}$ 的部分散射形成反射波（更深的部分的反向散射波干涉相消，没有贡献）
+- 对于*高能电磁波*
+	- 会出现非线性效应，如 二次谐波的产生（SHG，second harmonic generation）
+		- 由于散射后的波与入射波频率不同
+- Huygens-Fresnel Principle
+	- 波前 —— 子波源，子波频率不变
+	- 子波之间会产生干涉
+
+
+# 几何光学
+- **定义**：波长远小于光学元件的尺寸时的光学，只需要考虑“光线”的传播
+- **Fermat's Principle**（费马定理）
+	- 两点间光线的实际路径，是需要时间取**极值**（或说是**稳定值**，包括鞍点（saddle point））的路径，$\delta t=0$ 
+	- **定义**：光程（optical path） $n(s)ds$ ，相同光程需要相同时间
+- **简单成像系统**
+	- 物、像：光线的会聚点，为成像系统的一对共轭点
+		- 对于完美成像系统，物空间和像空间的点一一对应
+		- “虚（virtual）”物、像：光线延长线的会聚点
+		- 像差：大部分成像元件无法保证物发出的光全部会聚在同一点，导致无法成清晰的像
+	- 傍轴近似（Paraxial approximation）：光线靠近光轴时的近似，傍轴近似下大部分成像系统无像差，可以直接定义像的位置
+	- **成像系统的重要性质**：
+		- 成像规则
+		- 横向放大率（垂直光轴方向） $\mathscr{M}_{T}=\frac{y_{i}}{y_{o}}$、轴向放大率 $\mathscr{M}_{L}=\frac{dx_{i}}{dx_{o}}$ 
+	- *我的符号规则*：位置全部向右为正，大小全部向上为正（即共用一个 $xy$ 轴，原点位于成像系统中心）
+	- **透镜**
+		- 会聚 or 发散
+		- #Language 
+			- convex：凸 —— converge
+			- concave：凹 —— diverge
+		- 单球面透镜 $\frac{n_{1}}{s_{1}}-\frac{n_{2}}{s_{2}}=\frac{n_{1}-n_{2}}{R}$ ， $\frac{n_{1}y_{o}}{s_{1}}=\frac{n_{2}y_{i}}{s_{2}}$ 
+		- 双球面薄透镜（凸透镜 $R_{1}<R_{2}$ ，凹透镜 $R_{1}>R_{2}$ ） $\frac{n_{1}}{s_{1}}-\frac{n_{2}}{s_{2}}=\frac{n_{1}-n_{l}}{R_{1}}-\frac{n_{2}-n_{l}}{R_{2}}$ 
+			- $n_{1}=n_{2}=1$ 时，$f_{o}=-f_{i}=f$ ，$\frac{1}{s_{1}}-\frac{1}{s_{2}}=(n_{l}-1)\left( \frac{1}{R_{2}}-\frac{1}{R_{1}} \right)=\frac{1}{f}$ 
+		- 厚透镜：……
+	- **光阑（Stops）**
+		- 孔径光阑（Aperture stop，A.S.）：作用于光路上，影响亮度
+			- 不同物的区域亮度影响不同，会出现“渐晕（Vignetting）”现象，即周围暗中间亮
+		- 视场光阑（Field stop，F.S.）：作用于物或像上，影响大小
+		- 入射光瞳（Entrance pupil）：所有入射光的共同限制边界
+		- 出射光瞳（Exit pupil）：所有出射光的共同限制边界
+		- #Language 
+			- Irradiance = flux density：辐照度 = 辐射通量（单位时间内单位面积上的能量）
+				- 正比于入射光瞳面积，反比于图像面积
+				- 即 辐射通量 $f\propto \left( \frac{D}{f} \right)^{2}$ ，其中 $\frac{D}{f}$ 称作相对孔径
+	- **反射镜**
+		- 二次反射面：焦点间可以完美成像
+		- 球面反射镜：类比球面透镜，$n_{2}\to -n_{1}$，$\frac{1}{s_{1}}+\frac{1}{s_{2}}=\frac{2}{R}$，$f=\frac{R}{2}$ 
+	- **棱镜（prism）**
+		- ……
+- 透镜的*矩阵分析*：
+	- **描述光线**：对一个确定的面：入射角 + 入射位置，即用向量 $\begin{pmatrix}n\alpha \\ y\end{pmatrix}$ 描述光线
+	- 折射矩阵（Refraction Matrix）：$\mathcal{R}=\begin{pmatrix}1 & -\mathcal{D} \\ 0 & 1\end{pmatrix},\mathcal{D}=\frac{n_{t}-n_{i}}{R}$ ， $R$ 为折射面曲率（球心在透射方向为正）
+	- 传播矩阵（Transfer Matrix）：$\mathcal{T}=\begin{pmatrix}1 & 0 \\ \frac{d}{n} & 1\end{pmatrix}$ ， $d$ 为两个面间距
+- 厚透镜
+	- $\mathcal{A}=\begin{pmatrix}a_{11} & a_{12} \\ a_{21} & a_{22}\end{pmatrix}=\mathcal{R}_{2}\mathcal{T}_{21}\mathcal{R}_{1}$ 
+- 非傍轴情况
+	- **aberration-像差**
+		- 经过透镜不同部分的光有不同的会聚情况
+		- 球差（spherical aberration，SA）
+			- 轴上图像在焦点附近仍然存在模糊
+			- 成因：不同的光线有不同的焦点（会聚位置）
+			- 轴向球差（L.SA）： $y$ 确定时， $x$ 变长
+			- 横向球差（T.SA）： $x$ 确定时， $y$ 变长
+		- 彗差（comatic aberration，Coma）
+			- 离轴的部分，呈现彗星拖尾形
+			- 成因：不同的光线有不同的横向放大率
+		- 像散（Astigmatism）
+			- ……
+		- 像场弯曲（Field curvature）
+			- ……
+		- 畸变（Distortion）
+			- ……
+		- 色差（Chromatic aberration，CA）
+			- 轴向色差（Axial chromatic aberration (A.CA)）
+				- 类似球差
+			-  横向色差（Lateral chromatic aberration (L.CA)）
+				- 类似彗差
+			- 成因：透镜对不同光线的透射率不同
+
+# 波动光学
+- 能量分布
+	- 机械波：势能动能的转化？
+	- 电磁波：……
+	- ……
+	- 驻波
+		- **Application**：Optical Lattice
+	- 能量与波包
+		- ……
+		- 群速度 $v_{g}$ 就是能量传播的速度
+- **波的叠加（superposition）**
+	-  $E=E_{1}+E_{2}$ 
+	- ⭐影响**光强**：$I=\left< E^{2} \right> =I_{1}+I_{2}+I_{interference}$ ，干涉项 $I_{interference}=\left< 2E_{1}E_{2} \right>$ 
+	- **相干性**：两束光之间干涉项 $\left< 2E_{1}E_{2} \right> = 2E_{1,eff}E_{2,eff}\cos\Delta \phi$ 可以不为0
+		- 要求：**相位差为常数**
+		- 相干光源：如激光，发射光的过程间关联强
+		- 非相干光源：如自发辐射，发射光的过程间关联不大
+	- 叠加示例 
+		- 等频率反向传播
+		- 两相近频率同向传播：产生“拍”现象
+			- 相速度 $v_{p}=\frac{c}{n}$ 
+			- 群速度 $v_{g}=\frac{c}{n+\omega  \frac{dn}{dk}}$ 
+				- **拓展**：超光速光（Superluminal light）： $v_{g}>c\ or\ <0$ 
+	- **傅里叶变换**：
+		- （细节略）
+		- **例**：方波：$f(x)=\frac{2}{a}+\sum_{m}\frac{4}{a}  \frac{\sin\left( \frac{2\pi m}{a} \right)}{\frac{2\pi m}{a}} \cos mkx$ 
+			- 波峰越窄，频谱越宽（ $k$ 的范围越大）；波峰间距越大，频谱越密（ $\Delta k$ 越小）
+		- 光频分布与波包的关系
+			- ……
+- **偏振**
+	- 线偏振光：电场始终只沿一个方向的光
+	- 圆偏振光（Circular Polarization）：电场方向以光的频率旋转的光
+		- 可分解为 $x,y$ 两个方向的线偏振光叠加（向 $z$ 方向传播）
+		- **定义**：右旋光：以光传播方向为“前”，若电矢量按顺时针旋转（上方向右通过），则为右旋光；即 $x$ 方向相位*提前于* $y$ 方向相位 $\frac{\pi}{2}$ 
+	- 椭圆偏振光：
+		- $\varepsilon:$ yx方向相位差；$\frac{E_{0y}}{E_{0x}}:$ yx方向振幅比；$\alpha:$ 椭圆长轴与x轴夹角
+		- 任意正弦横波都可以视为椭圆偏振，线偏振、圆偏振为椭圆偏振的特殊情况
+	- **角动量**
+		- $L=\frac{\varepsilon}{\omega}$ ，与圆偏振方向相同
+		- **光子角度**
+			- 电磁波 - 波包 - 光子
+			- 光子自旋 $s=\pm \hbar$ ；注意，光子没有自旋为 $0$ 的态！
+				- 简单**解释** “为什么与正常玻色子的自旋不同” ：由于光子是无质量的，它的相对论效应与有质量物体有所不同
+		- 涡旋光（vortex light）：中心电场为0，周围电场不为0
+			- 这时还存在光子的轨道角动量
+	- **偏振片**（polarizer）
+		- **定理**：Malus' Law（马吕斯定律）：$I(\theta)=I(0)\cos ^{2}\theta$ 
+		- 机理：Dichroism（二向色性），基于物质的**各向异性**
+			- **例**：线栅偏振片：大量平行的金属细线构成
+				- 平行金属线的电场分量被消耗在与电子的相互作用中，产生焦耳热；垂直金属线的通过偏振片
+			- Dichroic Crystals
+				- **例**：电气石
+				- 主轴 or 光轴：光线吸收弱的方向，即偏振的方向
+				- 主轴方向吸收率与波长相关；非主轴方向基本全部吸收 —— 不同方向呈现出两种颜色
+				- 消光比 $\frac{T_{90}}{T_{0}}$ 为最低透光率/最高透光率
+			- Birefringence（双折射）
+				- 不同偏振方向的光折射率不同
+				- 主轴：？
+				- 光轴：？
+					- 单轴晶体（Uniaxial）：只有一个光轴的晶体
+				- Calcite（方解石）
+					- o光（ordinary，正常光）：几乎不受到折射影响（直近直出）
+					- e光（extraordinary，异常光）：位置偏移较大
+				- 各种偏振棱镜：利用双折射区分不同偏振方向的光
+		- 应用：3D眼镜：通过偏振区分左眼、右眼接受到的光
+	- 折反射的偏振
+		- ……
+	- **偏振的数学描述**
+		- 四个参量（Stokes parameters）： $\begin{cases}S_{0}=I_{total} \\ S_{1}=I_{x}-I_{y} \\ S_{2}=I_{y+x}-I_{y-x} \\ S_{3}=I_{R}-I_{L}\end{cases}$ 
+		- **拓展**：Poincare sphere：$S_{1},S_{2},S_{3}$ 为正交轴，$S_{0}$ 为半径
+			- 球面上为完全偏振态，球心为完全非偏振态
+		- Jones matrices
+			- ……
+		- Mueller matrices：作用于 Stokes parameters
+			- ……
+- **干涉**（interference）
+	- $I=\left< E^{2} \right>_{T}= \left< E_{1}^{2} \right>_{T}+\left< E_{2}^{2} \right>_{T}+\underbrace{ 2\left< E_{1}E_{2} \right>_{T} }_{ \text{干涉项} }$ 
+	- 干涉条件
+		- 1. 频率相近，否则由于振动频率过快无法观测到干涉现象
+		- 2. 相干性
+			- ……
+	- 经典干涉
+		- 等倾干涉（Fringe of equal inclination）：相同倾角的光线之间的干涉，不同倾角带来的光程差不同
+			- 由于干涉的光线倾角相同，干涉条纹位于无穷远，通常使用透镜来在近距离观察干涉条纹
+		- 等厚干涉（Fringe of equal thickness）：……
+			- **例**：牛顿环
+	- 干涉仪（Interferometer）
+		- 分束-产生相位差-合束
+		- Michelson干涉仪
+			- **例**：LIGO，测量引力波
+		- Mach-Zehnder干涉仪：有两个出射光
+		- Sagnac干涉仪：两束光的光路重叠，但传播方向相反
+			- 对角速度会有响应，即产生光程差；且其它因素几乎没有影响
+- **衍射**
+	- 基本思想：狭缝中的每个点都是一个点光源
+	- 夫琅禾费衍射（Fraunhofer diffraction）
+		- 远场条件：$R>\frac{a}{\lambda^{2}}$ ， $R$ 为光源到狭缝距离、狭缝到光屏距离（应同时满足）
+		- **单缝衍射**：（纵向足够大，几乎没有衍射现象）
+			- $E = \int d\varepsilon(\vec{r_{i}})=\int_{y=-\frac{D}{2}}^{\frac{D}{2}} \frac{\varepsilon_{0}}{D\left| r \right|}\cos(\omega t+kr)dy\simeq \int_{y=-\frac{D}{2}}^{\frac{D}{2}} \frac{\varepsilon_{0}}{DR}\cos(\omega t+k(R-y\sin\theta))dy=E_{0}$…… 
+				- *注*：这里由于光的波长足够小， $k$ 是一个很大的量，因此 $kr$ 保留到 $y$ 的一阶
+			- 暗纹位置：$a\sin \theta =m\lambda,m\neq 0$
+				- **理解**：**半波带**分解：可以将缝分解为数个小区域，每个小区域之间光程差为半波长（故称为半波带）；若小缝能分割为 $2m$ 个半波带，两两相消
+		- 多缝衍射光强（ $a$ 为缝间距， $b$ 为缝宽 ）
+			- $I=I_{0}\left( \frac{\sin\beta}{\beta} \right)^{2}\left( \frac{\sin N\alpha}{N\sin\alpha} \right)^{2}$，其中 $\alpha=\frac{\pi a\sin \theta}{\lambda},\beta=\frac{\pi b\sin \theta}{\lambda}$ 
+				- $2\cdot\alpha$ 为相邻两缝发出的光的相位差，$2\cdot \beta$ 为缝的两边界发出的光的相位差
+	- 菲涅尔衍射（Fresnel diffraction）
+		- 半波带近似计算：……
+- *更高级的光学*：
+	- 激光
+	- 非线性光学：场足够强，物质极化不再线性

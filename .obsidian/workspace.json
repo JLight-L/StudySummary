@@ -1,0 +1,266 @@
+{
+  "main": {
+    "id": "b92c5678e74edb56",
+    "type": "split",
+    "children": [
+      {
+        "id": "57169dc11e1639fb",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "b9a5416fa5f4e517",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "LaTeX Suite.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "LaTeX Suite"
+            }
+          },
+          {
+            "id": "9dd5579589c8338d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Physics/实验技术/XRD单晶外延生长 数据处理/calc.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "calc"
+            }
+          },
+          {
+            "id": "92bc4b6878c5297d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "README.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "README"
+            }
+          },
+          {
+            "id": "b0f38f69c6d818bf",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Physics/Questions.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Questions"
+            }
+          }
+        ],
+        "currentTab": 2
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "0d2d968edee1626e",
+    "type": "split",
+    "children": [
+      {
+        "id": "575c7480055c86b8",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "d78ec32b0c411994",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
+            }
+          },
+          {
+            "id": "c7ed950349b820cc",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "eq",
+                "matchingCase": true,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "搜索"
+            }
+          },
+          {
+            "id": "4481d2a9c6fb48a8",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "书签"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "457adae2a11014de",
+    "type": "split",
+    "children": [
+      {
+        "id": "13613bef287a2124",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "44356d815fecaeaf",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Physics/计算/VASP.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": false
+              },
+              "icon": "links-coming-in",
+              "title": "VASP 的反向链接列表"
+            }
+          },
+          {
+            "id": "ea6426c2ff76ef47",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Physics/论文阅读/SG Sym in Magn with no SOC-PhysRevX.12.021016.pdf",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "SG Sym in Magn with no SOC-PhysRevX.12.021016 的出链列表"
+            }
+          },
+          {
+            "id": "cfead83fc8c88d41",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "标签"
+            }
+          },
+          {
+            "id": "7fd490917a733abd",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "README.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "README 的大纲"
+            }
+          }
+        ],
+        "currentTab": 3
+      }
+    ],
+    "direction": "horizontal",
+    "width": 295.5
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "pdf-plus:PDF++: Toggle auto-copy": false,
+      "pdf-plus:PDF++: Toggle auto-focus": false,
+      "pdf-plus:PDF++: Toggle auto-paste": false
+    }
+  },
+  "active": "92bc4b6878c5297d",
+  "lastOpenFiles": [
+    "语法学习.md",
+    "Physics/Mathematics/数学分析.md",
+    "Physics/实验技术/XRD单晶外延生长 数据处理/calc.md",
+    "Physics/QuantumMechanics/量子力学 Quantum Mechanics.md",
+    "Physics/GroupTheory/量子力学中的群论-GroupTheoryInQuantumMechanics.md",
+    "Physics/Questions.md",
+    "Physics/GroupTheory/群论-GroupTheory.md",
+    "Physics/计算/VASP.md",
+    "Physics/实验技术/XRD单晶外延生长 数据处理/0916PXRD.png",
+    "LaTeX Suite.md",
+    "Physics/实验技术/XRD单晶外延生长 数据处理/output_5_7.png",
+    "Physics/实验技术/XRD单晶外延生长 数据处理/output_4_3.png",
+    "屏幕截图 2025-09-27 112745.png",
+    "Physics/实验技术/XRD单晶外延生长 数据处理/xrd.md",
+    "Physics/实验技术/XRD单晶外延生长 数据处理/output_6_13.png",
+    "Physics/实验技术/XRD单晶外延生长 数据处理/output_6_11.png",
+    "Physics/实验技术/XRD单晶外延生长 数据处理/output_6_9.png",
+    "Physics/实验技术/XRD单晶外延生长 数据处理/output_6_7.png",
+    "Physics/实验技术/XRD单晶外延生长 数据处理/output_6_5.png",
+    "Physics/实验技术/XRD单晶外延生长 数据处理/output_6_3.png",
+    "Physics/实验技术/XRD单晶外延生长 数据处理",
+    "Physics/SolidStatePhysics/固体物理课堂笔记.md",
+    "Physics/实验技术/原子力显微镜 AFM.md",
+    "Physics/实验技术/X射线衍射 XRD.md",
+    "Physics/一些思考.md",
+    "未命名.md",
+    "Physics/SolidStatePhysics/固体物理 SolidStatePhysics.md",
+    "其它本科课笔记/创业管理.md",
+    "Physics/实验技术/真空技术.md",
+    "Physics/实验技术/磁控溅射.md",
+    "Physics/论文阅读/SG Sym in Magn with no SOC-PhysRevX.12.021016.pdf",
+    "Physics/论文阅读/Suppl for SG Sym in Magn with no SOC-240913.pdf",
+    "Physics/StatisticalPhysics/统计物理课堂笔记.md",
+    "Physics/专题学习/DFTs.md",
+    "Physics/实验技术",
+    "Physics/Mathematics/拓扑学.md",
+    "Physics/StatisticalPhysics/热力学.md",
+    "Physics/专题学习/拓扑凝聚态.md",
+    "Physics/分析力学.md",
+    "Physics/分析力学 1.md",
+    "Physics/论文阅读",
+    "Physics/计算",
+    "Physics/Mathematics",
+    "游戏",
+    "学习记录",
+    "Physics/专题学习"
+  ]
+}
