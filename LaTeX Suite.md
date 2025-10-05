@@ -1,6 +1,6 @@
 	[
 	// For Convenience
-	{trigger: /(?<=\n)--/, replacement: "- $0", options: "rtA"},
+	// {trigger: /(?<=\n)--/, replacement: "- $0", options: "rtA"},
 	{trigger: /(?<=\s)-\*/, replacement: "- **$0**$1", options: "rtA"},
 	{trigger: "****", replacement: "**$0**$1", options: "tA"},
 	{trigger: /(?<!\w)([\w])m/, replacement: " $[[0]]$ ", options: "rt"},
@@ -18,7 +18,7 @@
 	{trigger: "rrr", replacement: " #Really？ ", options: "t"},
 	{trigger: /(?<=\s)(- )?eg/, replacement: "- **例**：", options: "rt"},
 	{trigger: /(?<=\s)(- )?t/, replacement: "- **拓展**：", options: "rt"},
-	{trigger: /(?<=\s)(- )?j/, replacement: "- **解释**：", options: "rt"},
+	{trigger: /(?<=\s)(- )?j/, replacement: "- *解释*：", options: "rt"},
 	{trigger: /(?<=\s)(- )?l/, replacement: "- **理解**：", options: "rt"},
 	{trigger: /(?<=\s)(- )?app/, replacement: "- **应用**：", options: "rt"},
 	{trigger: /(?<=\s)(- )?n/, replacement: "- *注*：", options: "rt"},
