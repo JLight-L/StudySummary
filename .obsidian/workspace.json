@@ -22,17 +22,17 @@
             }
           },
           {
-            "id": "9dd5579589c8338d",
+            "id": "4672627b5f76f22f",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "实验报告/研究型物理实验/高温超导材料 YBCO 的制备及表征/实验报告：高温超导材料 YBCO 的制备及表征.md",
+                "file": "Physics/计算/VASP.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "实验报告：高温超导材料 YBCO 的制备及表征"
+              "title": "VASP"
             }
           },
           {
@@ -64,7 +64,7 @@
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -185,13 +185,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Physics/Mathematics/数学分析.md",
+                "file": "Physics/计算/VASP.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "数学分析 的大纲"
+              "title": "VASP 的大纲"
             }
           }
         ],
@@ -214,10 +214,16 @@
       "pdf-plus:PDF++: Toggle auto-paste": false
     }
   },
-  "active": "4e5be7cbcf9501a6",
+  "active": "4672627b5f76f22f",
   "lastOpenFiles": [
-    "Physics/分析力学 1.md",
+    "Physics/专题学习/DFTs.md",
+    "Physics/计算/VASP.md",
+    "LaTeX Suite.md",
     "实验报告/研究型物理实验/高温超导材料 YBCO 的制备及表征/实验报告：高温超导材料 YBCO 的制备及表征.md",
+    "实验报告/研究型物理实验/高温超导材料 YBCO 的制备及表征/悬浮效果.jpg",
+    "实验报告/研究型物理实验/高温超导材料 YBCO 的制备及表征/未命名",
+    "Physics/Mathematics/数学分析.md",
+    "Physics/分析力学 1.md",
     "Physics/分析力学.md",
     "实验报告/研究型物理实验",
     "实验报告/研究型物理实验/高温超导材料 YBCO 的制备及表征/研磨效果.jpg",
@@ -227,11 +233,9 @@
     "实验报告",
     "Physics/实验技术/XRD单晶外延生长 数据处理/calc.md",
     "Physics/StatisticalPhysics/统计物理零散知识点.md",
-    "LaTeX Suite.md",
     "Physics/QuantumMechanics/全同粒子-IdenticalParticals.md",
     "Physics/StatisticalPhysics/热力学与统计物理补充内容.md",
     "Physics/Questions.md",
-    "Physics/Mathematics/数学分析.md",
     "Physics/StatisticalPhysics/热学.md",
     "Physics/SolidStatePhysics/固体物理课堂笔记.md",
     "Physics/实验技术/XRD单晶外延生长 数据处理/xrd.md",
@@ -240,7 +244,6 @@
     "Physics/QuantumMechanics/量子力学 Quantum Mechanics.md",
     "Physics/GroupTheory/量子力学中的群论-GroupTheoryInQuantumMechanics.md",
     "Physics/GroupTheory/群论-GroupTheory.md",
-    "Physics/计算/VASP.md",
     "Physics/实验技术/XRD单晶外延生长 数据处理/0916PXRD.png",
     "Physics/实验技术/XRD单晶外延生长 数据处理/output_5_7.png",
     "Physics/实验技术/XRD单晶外延生长 数据处理/output_4_3.png",
@@ -248,7 +251,6 @@
     "Physics/实验技术/XRD单晶外延生长 数据处理/output_6_13.png",
     "Physics/实验技术/XRD单晶外延生长 数据处理/output_6_11.png",
     "Physics/实验技术/XRD单晶外延生长 数据处理/output_6_9.png",
-    "Physics/实验技术/XRD单晶外延生长 数据处理/output_6_7.png",
     "Physics/实验技术/XRD单晶外延生长 数据处理",
     "Physics/实验技术/原子力显微镜 AFM.md",
     "Physics/实验技术/X射线衍射 XRD.md",
@@ -259,7 +261,6 @@
     "Physics/论文阅读/Suppl for SG Sym in Magn with no SOC-240913.pdf",
     "Physics/实验技术",
     "Physics/论文阅读",
-    "Physics/计算",
-    "Physics/Mathematics"
+    "Physics/计算"
   ]
 }

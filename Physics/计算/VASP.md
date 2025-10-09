@@ -1,4 +1,405 @@
 # 计算原理
+
+## 模型与近似
+
+VASP 的计算基于量子力学框架，通过一系列物理近似将复杂的多体问题转化为可计算的单电子问题：
+
+### 1. Born-Oppenheimer 近似
+- **物理基础**：原子核质量远大于电子质量（约1836倍）
+- **核心思想**：将原子核坐标 $\{R_I\}$ 视为外部参数，电子在瞬时核势场中运动
+- **数学表达**：将波函数分离为 $\Psi(\{r_i\},\{R_I\}) = \chi(\{R_I\}) \cdot \Phi(\{r_i\};\{R_I\})$
+- **计算意义**：实现"固定原子核 → 求解电子结构 → 计算原子间作用力 → 更新原子位置"的循环计算流程
+
+### 2. 周期性边界条件与 Bloch 定理
+- **周期性假设**：晶体具有平移对称性，满足 $\hat{T}_R \psi(r) = \psi(r+R)$
+- **Bloch 定理**：单电子波函数形式为 $\psi_{nk}(r) = e^{ik·r} u_{nk}(r)$，其中 $u_{nk}(r) = u_{nk}(r+R)$ 具有晶格周期性
+- **k点采样**：只需在第一布里渊区(IBZ)的离散k点网格上求解 ⇒ **KPOINTS** 文件定义采样方案
+
+### 3. 密度泛函理论(DFT)
+- **Hohenberg-Kohn 定理**：基态能量是电子密度 $n(r)$ 的唯一泛函
+- **Kohn-Sham 方程**：
+  $$\left[ -\frac{1}{2} \nabla^2 + V_{\text{eff}}(r) \right] \psi_{nk}(r) = \epsilon_{nk} \psi_{nk}(r)$$
+  其中 $V_{\text{eff}}(r) = V_{\text{ion}}(r) + V_H(r) + V_{xc}(r)$
+- **能量泛函**：
+  $$E[n] = T_s[n] + E_H[n] + E_{\text{ext}}[n] + E_{xc}[n] + E_{\text{ion-ion}}$$
+
+### 4. 平面波基组与赝势近似
+- **平面波展开**：$u_{nk}(r) = \sum_G C_{nk}(G) e^{iG·r}$
+- **截断能控制**：$|k+G|^2 \leq E_{\text{cut}}$ ⇒ `ENCUT` 参数
+- **赝势方法**：
+  - 模守恒赝势(NC-PP)
+  - 超软赝势(US-PP) 
+  - 投影缀加波(PAW) - VASP默认方法，在 augmentation region 用原子基 $\phi_i$ 补回真实节点
+
+## 计算流程简述
+
+图表概括：
+
+```
+读入 POSCAR POTCAR KPOINTS INCAR
+    ↓
+生成初始电荷 (ICHARG, ISTART, PREC, ALGO)
+    ↓
+构造 V_eff (PREC, ENCUT, LREAL, GGA, LDAU, LSORBIT, LMAXMIX)
+    ↓
+SCF 循环 (ALGO, NELM, EDIFF, AMIX, BMIX, ISMEAR, SIGMA, LCHARG, LWAVE, NPAR, KPAR)
+    ↓
+得能量 & 力 (CHGCAR, WAVECAR, EIGENVAL, DOSCAR, PROCAR)
+    ↓
+EDIFFG 检查是否更新核位置 (IBRION, POTIM, NSW, ISIF, EDIFFG)
+    ↓
+是 → 结束，写 CONTCAR, OUTCAR, OSZICAR
+否 → 更新核坐标 → 回 SCF
+```
+
+### 阶段1：初始化与输入处理
+- **目标**：读取输入文件，构建初始电荷密度和势场
+- **关键文件**：POSCAR(结构)、POTCAR(赝势)、KPOINTS(k点)、INCAR(参数)
+- **核心参数**：
+  - `ICHARG`：初始电荷密度设置
+  - `ISTART`：初始波函数设置  
+  - `PREC`：计算精度控制
+  - `ALGO`：算法选择
+- **输出**：初始电荷密度，准备SCF循环
+
+### 阶段2：电子自洽场(SCF)循环
+- **目标**：自洽求解Kohn-Sham方程
+- **流程**：
+  1. 构造有效势 $V_{\text{eff}}(r) = V_{\text{ion}}(r) + V_H(r) + V_{xc}(r)$
+  2. 对角化KS哈密顿量 $H_{G,G'} = \frac{1}{2} |k+G|^2 \delta_{GG'} + V_{\text{eff}}(G-G')$
+  3. 计算新电荷密度 $n_{\text{new}}(r) = \sum_{nk} f_{nk} |\psi_{nk}(r)|^2$
+  4. 混合新旧电荷密度 $n_{\text{in}}^{m+1} = \alpha n_{\text{out}}^m + (1-\alpha) n_{\text{in}}^m$
+  5. 检查收敛条件 $|E_n - E_{n-1}| < \text{EDIFF}$
+- **核心参数**：
+  - `ALGO`：对角化算法
+  - `NELM`：最大电子步数
+  - `EDIFF`：能量收敛标准
+  - `AMIX/BMIX`：电荷混合参数
+  - `ISMEAR/SIGMA`：展宽设置
+  - `LCHARG/LWAVE`：输出控制
+  - `NPAR/KPAR`：并行设置
+- **输出**：CHGCAR(电荷密度)、WAVECAR(波函数)、EIGENVAL(本征值)
+
+### 阶段3：力与应力计算
+- **目标**：计算原子受力和晶格应力
+- **物理量**：
+  - 原子力：$F_I = -\frac{\partial E_{\text{total}}}{\partial R_I}$ (Hellmann-Feynman力 + Pulay修正)
+  - 应力张量：$\sigma_{ab} = \frac{1}{\Omega} \frac{\partial E}{\partial \epsilon_{ab}}$
+- **输出**：OUTCAR中记录详细的力和应力信息
+
+### 阶段4：离子位置优化
+- **目标**：寻找能量最低的原子构型
+- 结构计算时每个离子步都需要重新进行完整的SCF计算
+- **算法选择**：
+  - `IBRION=1`：准牛顿法
+  - `IBRION=2`：共轭梯度法(CG) - $R_{\text{new}} = R_{\text{old}} + \alpha \cdot d$
+  - `IBRION=3`：阻尼分子动力学 - $m \cdot \frac{d^2R}{dt^2} = F - \mu \cdot \frac{dR}{dt}$
+- **收敛控制**：
+  - `EDIFFG`：力收敛阈值
+  - `NSW`：最大离子步数  
+  - `POTIM`：步长控制
+  - `ISIF`：晶胞弛豫控制
+- **输出**：CONTCAR(优化后结构)、OSZICAR(收敛过程)
+
+### 阶段5：性质分析与输出
+- **目标**：计算各种物理性质并输出结果
+- **主要输出文件**：
+  - `OUTCAR`：详细计算日志
+  - `CONTCAR`：优化后的结构
+  - `OSZICAR`：收敛过程简表
+  - `CHGCAR`：电荷密度
+  - `EIGENVAL/DOSCAR`：能级和态密度信息
+  - `PROCAR`：轨道投影信息(LORBIT=11时生成)
+
+## 计算流程与参数详解
+
+### 1. 平面波基组离散化
+
+#### 数学基础详解
+- **平面波展开原理**：
+  $$\psi_{nk}(r) = e^{ik·r} u_{nk}(r) = e^{ik·r} \sum_G C_{nk}(G) e^{iG·r}$$
+  其中 $G$ 是倒格矢，$C_{nk}(G)$ 是展开系数
+
+- **截断能物理意义**：
+  $$E_{\text{cut}} = \frac{\hbar^2 |k+G|_{\text{max}}^2}{2m}$$
+  动能超过 $E_{\text{cut}}$ 的平面波被忽略
+
+#### 关键参数深度解析
+
+- **ENCUT（截断能）**
+  - **设置依据**：
+    ```bash
+    # 查看POTCAR中的推荐值
+    grep ENMAX POTCAR
+    # 输出示例：ENMAX = 400.000 eV
+    ```
+  - **收敛测试流程**：
+    1. 在 $1.0 \times \text{ENMAX}$ 到 $1.5 \times \text{ENMAX}$ 间取5-7个点
+    2. 计算每个ENCUT下的总能量
+    3. 绘制能量-ENCUT曲线，选择平台起始点
+  - **经验公式**：
+    - 普通精度：$1.3 \times \max(\text{ENMAX})$
+    - 高精度：$1.5 \times \max(\text{ENMAX})$
+    - 测试阶段：$1.0 \times \max(\text{ENMAX})$
+
+- **PREC（精度控制）**
+  - **各选项的具体影响**：
+    - `PREC = Low`：FFT网格密度≈1.3×默认，快速但粗糙
+    - `PREC = Normal`：FFT网格密度≈1.6×默认，平衡选择  
+    - `PREC = Accurate`：FFT网格密度≈2.0×默认，应力计算必需
+    - `PREC = Single`：单精度，测试用，不推荐正式计算
+
+#### 赝势选择策略
+- **PAW方法的三区域划分**：
+  1. 核区域：全电子计算，保留真实波函数节点
+  2. 中间区域：平滑赝势
+  3. 外围区域：平面波展开
+- **能量表达式**：
+  $$E = \sum_{nk} f_{nk} \langle \psi_{nk} | -\frac{1}{2}\nabla^2 | \psi_{nk} \rangle + E_H[n] + E_{xc}[n] + E_{\text{ion-ion}} + E_{\text{PAW}}$$
+
+### 2. 自洽场(SCF)循环详解
+
+#### SCF循环的完整数学流程
+
+**步骤1：初始猜测构建**
+- `ICHARG=2`：$n_{\text{initial}}(r) = \sum_I n_{\text{atom}}^I(|r-R_I|)$
+- `ICHARG=1`：$n_{\text{initial}}(r) = \text{read\_CHGCAR}()$
+
+**步骤2：有效势构造的数值实现**
+$$V_{\text{eff}}(r) = V_{\text{ion}}(r) + \int \frac{n(r')}{|r-r'|} dr' + V_{xc}[n(r)]$$
+- **V_ion处理**：赝势在倒空间中应用
+- **Hartree势**：通过FFT在实空间计算泊松方程
+- **交换关联势**：LDA/GGA在实空间格点上计算
+
+**步骤3：哈密顿量对角化的算法选择**
+- **Davidson算法(ALGO=Normal)**：
+  - 优点：稳定性好，适合难收敛体系
+  - 缺点：内存消耗大
+- **RMM-DIIS算法(ALGO=Fast)**：
+  - 优点：速度快，内存需求小  
+  - 缺点：可能振荡
+- **精确对角化(ALGO=All)**：
+  - 优点：绝对稳定
+  - 缺点：计算量 $O(N^3)$，只适合小体系
+
+**步骤4：占据数确定的物理考量**
+$$f_{nk} = \frac{1}{\exp((\epsilon_{nk} - \epsilon_F)/k_B T) + 1}$$
+- **ISMEAR选择策略**：
+  - 绝缘体：`ISMEAR=-5`（四面体方法）+ `SIGMA=0.01`
+  - 半导体：`ISMEAR=0`（高斯展宽）+ `SIGMA=0.05`  
+  - 金属：`ISMEAR=1`（MP方法）+ `SIGMA=0.2`
+
+**步骤5：电荷密度混合的收敛控制**
+- **线性混合**：$n_{\text{in}}^{m+1} = \alpha n_{\text{out}}^m + (1-\alpha) n_{\text{in}}^m$
+- **Pulay混合**：使用前m步历史构建最优混合
+- **关键参数经验值**：
+  ```bash
+  # 易收敛体系
+  AMIX = 0.4
+  BMIX = 1.0
+  # 难收敛体系（磁性、金属）
+  AMIX = 0.05
+  BMIX = 0.0001
+  AMIX_MAG = 0.8  # 自旋密度单独混合
+  ```
+
+### 3. 离子弛豫算法详解
+
+**关键机制：每个离子步都需要重新计算SCF**
+
+**物理本质**：
+$$F_I = -\frac{\partial E_{\text{total}}}{\partial R_I} = -\langle \psi | \frac{\partial H}{\partial R_I} | \psi \rangle + \text{Pulay修正}$$
+- 原子位置 $R_I$ 改变 → 哈密顿量 $H$ 改变 → 必须重新求解KS方程
+- 只有自洽的波函数 $\psi$ 才能给出正确的Hellmann-Feynman力
+
+#### 离子运动算法深度解析
+
+`IBRION=2`（共轭梯度法）：
+- **数学原理**：
+  $$R_{\text{new}} = R_{\text{old}} + \alpha \cdot d$$
+  $$d_{\text{new}} = -F + \beta \cdot d_{\text{old}}$$
+- **参数调节**：`POTIM = 0.5`（初始步长）
+
+`IBRION=1`（准牛顿法）：
+- **Hessian矩阵更新**：
+  $$H_{\text{new}} = H_{\text{old}} + \frac{\Delta F \cdot \Delta R^T}{\Delta R \cdot \Delta F}$$
+
+`IBRION=3`（阻尼分子动力学）：
+- **运动方程**：$m \cdot \frac{d^2R}{dt^2} = F - \mu \cdot \frac{dR}{dt}$
+
+#### 收敛标准设置策略
+
+- **力收敛(EDIFFG<0)**：
+  ```bash
+  EDIFFG = -0.05    # 粗略优化（0.05 eV/Å）
+  EDIFFG = -0.02    # 标准优化（0.02 eV/Å）  
+  EDIFFG = -0.005   # 高精度优化（0.005 eV/Å）
+  ```
+
+- **能量收敛(EDIFFG>0)**：
+  ```bash
+  EDIFFG = 1E-4     # 能量变化 0.1 meV
+  EDIFFG = 1E-5     # 能量变化 0.01 meV
+  ```
+
+### 4. 磁性计算专题
+
+#### 自旋极化的数值实现
+
+**共线磁性的两套KS方程**：
+$$\left[ -\frac{1}{2}\nabla^2 + V_{\text{eff}}^\uparrow[n^\uparrow,n^\downarrow] \right] \psi_{nk}^\uparrow = \epsilon_{nk}^\uparrow \psi_{nk}^\uparrow$$
+$$\left[ -\frac{1}{2}\nabla^2 + V_{\text{eff}}^\downarrow[n^\downarrow,n^\uparrow] \right] \psi_{nk}^\downarrow = \epsilon_{nk}^\downarrow \psi_{nk}^\downarrow$$
+
+**非共线磁性的矩阵形式**：
+$$\left[ \left( -\frac{1}{2}\nabla^2 + V_{\text{eff}} \right) I + B_{\text{xc}} \cdot \sigma \right] \psi_{nk} = \epsilon_{nk} \psi_{nk}$$
+其中 $\psi_{nk}$ 是二维旋量，$\sigma$ 是Pauli矩阵
+
+#### 磁性收敛的关键技巧
+
+**初始磁矩设置**：
+```bash
+# 反铁磁示例（MnO晶体）
+MAGMOM = 1*3.0 1*-3.0 2*0.0  # Mn↑ Mn↓ O O
+# 铁磁示例  
+MAGMOM = 2*5.0 4*0.0         # 两个Fe原子各5μB
+```
+
+### 5. 进阶功能与性能优化
+
+#### DFT+U 方法
+- **Dudarev形式**：$E_U = \frac{U-J}{2} \text{Tr}[\rho - \rho^2]$
+- **参数设置**：
+  ```bash
+  LDAU = .TRUE.
+  LDAUTYPE = 2
+  LDAUL = 2 -1        # 对第一个元素的d轨道加U
+  LDAUU = 4.0 0.0     # U值(eV)
+  LDAUJ = 0.0 0.0     # J值(eV)
+  LMAXMIX = 4         # d电子必需
+  ```
+
+#### 性能优化策略
+
+**并行化设置**：
+```bash
+# K点并行（k点较多时）
+KPAR = 4
+# 能带并行（k点较少时）  
+NCORE = √总核心数      # 经验公式
+```
+
+**收敛问题诊断**：
+- **SCF振荡**：减小`AMIX`，使用`ALGO=All`
+- **离子弛豫发散**：减小`POTIM`，改用`IBRION=1`
+- **内存不足**：增加`KPAR`，使用`LREAL=Auto`
+
+# 笔记
+## Files
+### Input
+#### INCAR
+计算方式
+
+- 描述电子在能级附近的分布，$f(E)$ ，用于避免数值计算的不稳定性（通常是通过用连续的分布代替不连续分布，即“smearing”）
+	- Kimi：控制电子能量分布的平滑处理方式，用于处理能带填充问题。
+	- ISMEAR：分布类型
+		- 对于半导体和绝缘体体系，ISMEAR的值取绝对不能大于0， 一般用0；
+		- K 点少，半导体或者绝缘体，那么只能用 ISMEAR = 0；
+		- 在DOS能带计算中，使用ISMEAR= -5 用于获取精确的信息。
+		- 对于金属来说，ISMEAR的取值一般为>=0 的数值（0,1,2）；
+		- 保守地说，ISMEAR = 0 (Gaussian Smearing) 可以满足大部分的体系（金属，导体，半导体，分子）；
+	- SIGMA：分布宽度
+		- 如果用了ISMEAR = -5； SIGMA的值可以忽略，也可以不管
+		- 对于金属：ISMEAR = 1 或 0、非金属: ISMEAR= 0 的时候，一般取 SIGMA = 0.10 即可，默认值是0.20。不放心的话，用0.05。
+		- 对于气体分子，原子体系（也就是你把分子或者原子放到一个box里面）： ISMEAR = 0; SIGMA = 0.01。
+		- **标准是**： SIGMA的取值要保证OUTCAR 中的 `entropy T*S` 这一项，平均到每个原子上，要小于 1-2 meV 
+- 自旋极化
+    - ISPIN=1：无自旋极化
+    - ISPIN=2：共线自旋极化
+    - INONCOLLINEAR=.T.：非共线（记得使用 vasp_ncl）
+    - *注*：For noncollinear calculations ISPIN is ignored.
+
+
+#### KPOINTS
+- 第3行：k空间网格类型
+	- G：Gamma-Centered Grid，包含布里渊区中心点（Γ点）
+	- M：Monkhorst-Pack Grid，围绕Γ点（相当于平移一段距离）
+- 第四行：k点（网格格点）分割数（ #？？？ 对第一布里渊区的分割）
+	- 对于原子或者分子的计算，K点取一个点就够了（1 1 1）
+	- 如果你要用 `ISMEAR = -5` 来计算的时候，需要至少大于 2 2 2或者3 3 3
+		- 四面体积分法需要在k空间中划分多个四面体单元，每个四面体由相邻的k点连接而成。如果只有 **1×1×1**（即仅Γ点），无法形成任何四面体，导致方法失效。
+- 第五行：k点偏移量
+
+#### POSCAR
+原子位点信息
+
+#### POTCAR
+赝势文件
+
+- 依个人的学习经验，VRHFIN， LEXCH，TITEL，ZVAL，ENMAX是用到最多的几个参数。
+	- VRHFIN 用来看元素的价电子排布，如果你元素周期表倒背如流，可以忽略这个参数；
+	- LEXCH 表示这个POTCAR对应的是GGA-PBE泛函；如果INCAR中不设定泛函，则默认通过这个参数来设定。
+	- TITEL 就不用说了，指的是哪个元素，以及POTCAR发布的时间；
+	- ZVAL 指的是实际上POTCAR中价电子的数目，尤其是做Bader电荷分析的时候，极其重要。
+	- ENMAX 代表默认的截断能。与INCAR中的ENCUT这个参数相关
+- POTCAR检查常用的Linux命令：
+
+	查看POTCAR中的元素:
+	
+	```bash
+	grep  TIT POTCAR
+	```
+	
+	查看POTCAR的截断能:
+	
+	```bash
+	grep  ENMAX POTCAR
+	```
+	
+	查看POTCAR中元素的价电子数目：
+	
+	```bash
+	grep  ZVAL POTCAR
+	```
+- *交换关联泛函* 
+	- 在 LDA 中，交换能量密度是电子密度的函数，其形式为 $E_x^{LDA}[\rho] = \int \epsilon_x(\rho(\mathbf{r})) \rho(\mathbf{r}) d\mathbf{r}$，其中 $\epsilon_x(\rho)$ 是均匀电子气中的交换能量密度。
+	- GGA 是对 LDA 的改进，它考虑了电子密度的梯度信息，能够更好地描述电子密度变化较快的区域。GGA 的交换相关能量泛函形式为 $E_{xc}^{GGA}[\rho] = \int \epsilon_{xc}(\rho(\mathbf{r}), \nabla\rho(\mathbf{r})) \rho(\mathbf{r}) d\mathbf{r}$ ，其中 $\epsilon_{xc}(\rho, \nabla\rho)$ 是交换相关能量密度，它不仅依赖于电子密度，还依赖于电子密度的梯度。
+		- 常用的 GGA 泛函有 PBE 泛函等
+- 赝势选择
+	- 
+#### 一定要检查输入文件！
+参数名
+计算体系需求
+计算任务需求
+
+### 交换关联泛函
+在 DFT 中，交换相关能量泛函是一个关键部分，因为它直接决定了计算精度。交换相关能量泛函由交换能量泛函和相关能量泛函两部分组成。
+
+交换能量泛函描述了电子之间的交换相互作用，它来源于泡利不相容原理，导致同自旋电子之间相互排斥。在 LDA 中，交换能量密度是电子密度的函数，其形式为
+
+$$
+E_x^{\text{LDA}}[\rho] = \int \epsilon_x(\rho(\mathbf{r}))\,\rho(\mathbf{r})\,\mathrm{d}\mathbf{r},
+$$
+
+其中 $\epsilon_x(\rho)$ 是均匀电子气中的交换能量密度。
+
+相关能量泛函描述了电子之间的相关运动带来的能量变化。在 LDA 中，相关能量密度也是电子密度的函数，形式为
+
+$$
+E_c^{\text{LDA}}[\rho] = \int \epsilon_c(\rho(\mathbf{r}))\,\rho(\mathbf{r})\,\mathrm{d}\mathbf{r},
+$$
+
+其中 $\epsilon_c(\rho)$ 是均匀电子气中的相关能量密度。LDA 的优点是计算简单，但缺点是对非均匀电子密度体系的描述不够准确。
+
+GGA 是对 LDA 的改进，它考虑了电子密度的梯度信息，能够更好地描述电子密度变化较快的区域。GGA 的交换相关能量泛函形式为
+
+$$
+E_{xc}^{\text{GGA}}[\rho] = \int \epsilon_{xc}(\rho(\mathbf{r}),\nabla\rho(\mathbf{r}))\,\rho(\mathbf{r})\,\mathrm{d}\mathbf{r},
+$$
+
+其中 $\epsilon_{xc}(\rho,\nabla\rho)$ 是交换相关能量密度，它不仅依赖于电子密度，还依赖于电子密度的梯度。常用的 GGA 泛函有 PBE 泛函等，PBE 泛函在描述材料的结构和性质方面表现出较好的精度。
+
+在 VASP 计算中，选择合适的交换相关泛函对计算结果的准确性至关重要。对于大多数固体材料，GGA 泛函（如 PBE）是一个较好的选择，因为它在计算精度和计算成本之间取得了较好的平衡。在实际应用中，需要根据具体的研究体系和计算目的来选择合适的交换相关泛函。在 VASP 的输入文件 INCAR 中，可以通过设置参数 `IXC` 或 `PREC` 来选择不同的交换相关泛函，例如 `IXC=1` 表示 LDA，`GGA=PE` 表示 PBE 泛函。
+
 # Generated by Kimi-K2
 VASP 的计算原理可以拆成两条主线：  
 A. 如何把“电子结构问题”变成“计算机能求解的矩阵本征值问题”；  
@@ -117,7 +518,7 @@ VASP 提供几种“如何挪核”算法：
 离子步外层循环：  
 1. 固定核做 SCF → 得能量 & 力  
 2. 若 $\max|F_I| < \text{EDIFFG}$ ⇒ 结束，输出 CONTCAR  
-3. 否则按选定的 IBRION 算法更新 $${R_I}$$ → 新 POSCAR → 回第 1 步
+3. 否则按选定的 IBRION 算法更新 ${R_I}$ → 新 POSCAR → 回第 1 步
 
 ------------------------------------------------
 4 进阶功能：DFT+U、自旋轨道、非共线、杂化
@@ -641,6 +1042,8 @@ LDAUJ: 0.80
 LMAXMIX: 4
 ```
 
+- *注*：关于 KPOINTS：
+    - 第四行分割数一般的标准：每个方向：分割数 × 晶格常数 > 45，保证k空间取点间距足够近
 ## Generated by DeepSeek-V3
 以下是整合后的**VASP参数设置终极指南**，结合两次回答的核心内容，按计算流程分类呈现，包含所有技术细节和优化建议：
 
