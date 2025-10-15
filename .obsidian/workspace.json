@@ -22,17 +22,17 @@
             }
           },
           {
-            "id": "4672627b5f76f22f",
+            "id": "8adda8f011f52141",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Physics/Mathematics/数学分析.md",
+                "file": "实验报告/研究型物理实验/溶胶凝胶法制备纳米二氧化钛/实验报告：溶胶-凝胶法制备纳米二氧化钛.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "数学分析"
+              "title": "实验报告：溶胶-凝胶法制备纳米二氧化钛"
             }
           },
           {
@@ -41,16 +41,16 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Physics/分析力学.md",
+                "file": "Physics/StatisticalPhysics/统计物理课堂笔记.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "分析力学"
+              "title": "统计物理课堂笔记"
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -171,13 +171,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Physics/分析力学.md",
+                "file": "实验报告/研究型物理实验/溶胶凝胶法制备纳米二氧化钛/实验报告：溶胶-凝胶法制备纳米二氧化钛.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "分析力学 的大纲"
+              "title": "实验报告：溶胶-凝胶法制备纳米二氧化钛 的大纲"
             }
           }
         ],
@@ -200,30 +200,35 @@
       "pdf-plus:PDF++: Toggle auto-paste": false
     }
   },
-  "active": "2d9ab8db1007ee99",
+  "active": "8adda8f011f52141",
   "lastOpenFiles": [
-    "Physics/分析力学 1.md",
-    "Physics/分析力学.md",
+    "实验报告/研究型物理实验/高温超导材料 YBCO 的制备及表征/实验报告：高温超导材料 YBCO 的制备及表征.md",
+    "实验报告/研究型物理实验/溶胶凝胶法制备纳米二氧化钛/实验报告：溶胶-凝胶法制备纳米二氧化钛.md",
     "Physics/Mathematics/数学分析.md",
-    "Physics/QuantumMechanics/角动量的耦合.md",
+    "实验报告/研究型物理实验/溶胶凝胶法制备纳米二氧化钛",
+    "实验报告/研究型物理实验/未命名.md",
+    "Physics/StatisticalPhysics/统计物理课堂笔记.md",
     "LaTeX Suite.md",
+    "游戏/星露谷模组推荐.md",
+    "Physics/StatisticalPhysics/统计物理零散知识点.md",
+    "Physics/StatisticalPhysics/热力学课堂笔记.md",
+    "Physics/StatisticalPhysics/热力学与统计物理补充内容.md",
+    "Physics/分析力学.md",
+    "Physics/StatisticalPhysics/热学.md",
+    "Physics/分析力学 1.md",
+    "Physics/QuantumMechanics/角动量的耦合.md",
     "Physics/计算/VASP.md",
     "Physics/专题学习/DFTs.md",
-    "实验报告/研究型物理实验/高温超导材料 YBCO 的制备及表征/实验报告：高温超导材料 YBCO 的制备及表征.md",
     "实验报告/研究型物理实验/高温超导材料 YBCO 的制备及表征/悬浮效果.jpg",
     "实验报告/研究型物理实验/高温超导材料 YBCO 的制备及表征/未命名",
     "实验报告/研究型物理实验",
     "实验报告/研究型物理实验/高温超导材料 YBCO 的制备及表征/研磨效果.jpg",
     "实验报告/研究型物理实验/高温超导材料 YBCO 的制备及表征/压片效果.jpg",
     "实验报告/研究型物理实验/高温超导材料 YBCO 的制备及表征",
-    "Physics/StatisticalPhysics/统计物理课堂笔记.md",
     "实验报告",
     "Physics/实验技术/XRD单晶外延生长 数据处理/calc.md",
-    "Physics/StatisticalPhysics/统计物理零散知识点.md",
     "Physics/QuantumMechanics/全同粒子-IdenticalParticals.md",
-    "Physics/StatisticalPhysics/热力学与统计物理补充内容.md",
     "Physics/Questions.md",
-    "Physics/StatisticalPhysics/热学.md",
     "Physics/SolidStatePhysics/固体物理课堂笔记.md",
     "Physics/实验技术/XRD单晶外延生长 数据处理/xrd.md",
     "README.md",
@@ -239,14 +244,9 @@
     "Physics/实验技术/XRD单晶外延生长 数据处理/output_6_11.png",
     "Physics/实验技术/XRD单晶外延生长 数据处理/output_6_9.png",
     "Physics/实验技术/XRD单晶外延生长 数据处理",
-    "Physics/实验技术/原子力显微镜 AFM.md",
-    "Physics/实验技术/X射线衍射 XRD.md",
-    "Physics/一些思考.md",
-    "未命名.md",
     "Physics/论文阅读/SG Sym in Magn with no SOC-PhysRevX.12.021016.pdf",
     "Physics/论文阅读/Suppl for SG Sym in Magn with no SOC-240913.pdf",
     "Physics/实验技术",
-    "Physics/论文阅读",
-    "Physics/计算"
+    "Physics/论文阅读"
   ]
 }

@@ -8,7 +8,7 @@
 	{trigger: ", ", replacement: ",\\quad  ", options: "mA"},
 	
 	// My Noting Style
-	{trigger: /(?<=\s)(- )?d/, replacement: "- **定义**：", options: "rt"},
+	{trigger: /(?<=\s)d/, replacement: "**定义**：", options: "rt"},
 	{trigger: /(?<=\s)(- )?p/, replacement: "- **定理**：", options: "rt"},
 	{trigger: /(?<=\s)(- )?pp/, replacement: "- **性质**：", options: "rt"},
 	{trigger: /(?<=\s)(- )?s/, replacement: "- **🖊总结**：", options: "rt"},
