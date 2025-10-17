@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "实验报告/研究型物理实验/溶胶凝胶法制备纳米二氧化钛/实验报告：溶胶-凝胶法制备纳米二氧化钛.md",
+                "file": "Physics/Mathematics/数学分析.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "实验报告：溶胶-凝胶法制备纳米二氧化钛"
+              "title": "数学分析"
             }
           },
           {
@@ -171,13 +171,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "实验报告/研究型物理实验/溶胶凝胶法制备纳米二氧化钛/实验报告：溶胶-凝胶法制备纳米二氧化钛.md",
+                "file": "Physics/Mathematics/数学分析.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "实验报告：溶胶-凝胶法制备纳米二氧化钛 的大纲"
+              "title": "数学分析 的大纲"
             }
           }
         ],
@@ -202,9 +202,15 @@
   },
   "active": "8adda8f011f52141",
   "lastOpenFiles": [
-    "实验报告/研究型物理实验/高温超导材料 YBCO 的制备及表征/实验报告：高温超导材料 YBCO 的制备及表征.md",
-    "实验报告/研究型物理实验/溶胶凝胶法制备纳米二氧化钛/实验报告：溶胶-凝胶法制备纳米二氧化钛.md",
+    "实验报告/研究型物理实验/激光干涉阵列扫描实验/实验报告.md",
+    "实验报告/研究型物理实验/高温超导材料 YBCO 的制备及表征/实验报告.md",
+    "实验报告/研究型物理实验/溶胶凝胶法制备纳米二氧化钛/实验报告.md",
     "Physics/Mathematics/数学分析.md",
+    "实验报告/研究型物理实验/激光干涉阵列扫描实验/全息效果2.jpg",
+    "实验报告/研究型物理实验/激光干涉阵列扫描实验/全息效果1.jpg",
+    "实验报告/研究型物理实验/溶胶凝胶法制备纳米二氧化钛/丁达尔效应.jpg",
+    "实验报告/研究型物理实验/激光干涉阵列扫描实验",
+    "实验报告/研究型物理实验/溶胶凝胶法制备纳米二氧化钛/旋涂效果.jpg",
     "实验报告/研究型物理实验/溶胶凝胶法制备纳米二氧化钛",
     "实验报告/研究型物理实验/未命名.md",
     "Physics/StatisticalPhysics/统计物理课堂笔记.md",
@@ -235,18 +241,12 @@
     "语法学习.md",
     "Physics/QuantumMechanics/量子力学 Quantum Mechanics.md",
     "Physics/GroupTheory/量子力学中的群论-GroupTheoryInQuantumMechanics.md",
-    "Physics/GroupTheory/群论-GroupTheory.md",
     "Physics/实验技术/XRD单晶外延生长 数据处理/0916PXRD.png",
     "Physics/实验技术/XRD单晶外延生长 数据处理/output_5_7.png",
     "Physics/实验技术/XRD单晶外延生长 数据处理/output_4_3.png",
-    "屏幕截图 2025-09-27 112745.png",
-    "Physics/实验技术/XRD单晶外延生长 数据处理/output_6_13.png",
-    "Physics/实验技术/XRD单晶外延生长 数据处理/output_6_11.png",
-    "Physics/实验技术/XRD单晶外延生长 数据处理/output_6_9.png",
     "Physics/实验技术/XRD单晶外延生长 数据处理",
     "Physics/论文阅读/SG Sym in Magn with no SOC-PhysRevX.12.021016.pdf",
     "Physics/论文阅读/Suppl for SG Sym in Magn with no SOC-240913.pdf",
-    "Physics/实验技术",
-    "Physics/论文阅读"
+    "Physics/实验技术"
   ]
 }
