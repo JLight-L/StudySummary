@@ -24,7 +24,9 @@
 	{trigger: /(?<=\s)(- )?n/, replacement: "- *注*：", options: "rt"},
 	{trigger: /(?<=\s)(- )?coro/, replacement: "- *推论*：", options: "rt"}, // corollary
 	{trigger: /(?<=\s)(- )?coro(\d)/, replacement: "- *推论* [[1]]：", options: "rt"},
-	{trigger: /[-=][>》]/, replacement: " → ", options: "rt"},
+	{trigger: /-[>》]/, replacement: " → ", options: "rt"},
+	{trigger: /=[>》]/, replacement: " ⇒ ", options: "rt"},
+	{trigger: /[<《]=[>》]/, replacement: " ⇔ ", options: "rt"},
 	{trigger: "？？？", replacement: " #？？？ ", options: "t"},
 	{trigger: "。。。", replacement: " #没懂 ", options: "t"},
 	//{trigger: "qq", replacement: "\n>  ？？？ \n> ", options: "t"},
