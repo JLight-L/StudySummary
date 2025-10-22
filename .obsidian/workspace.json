@@ -22,20 +22,6 @@
             }
           },
           {
-            "id": "1c804e9525b2aa8a",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "实验报告/研究型物理实验/激光干涉阵列扫描实验/实验报告.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "实验报告"
-            }
-          },
-          {
             "id": "8adda8f011f52141",
             "type": "leaf",
             "state": {
@@ -63,8 +49,7 @@
               "title": "数学分析1"
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -185,13 +170,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Physics/Mathematics/数学分析.md",
+                "file": "LaTeX Suite.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "数学分析 的大纲"
+              "title": "LaTeX Suite 的大纲"
             }
           }
         ],
@@ -214,12 +199,13 @@
       "pdf-plus:PDF++: Toggle auto-paste": false
     }
   },
-  "active": "8adda8f011f52141",
+  "active": "b9a5416fa5f4e517",
   "lastOpenFiles": [
+    "实验报告/研究型物理实验/激光干涉阵列扫描实验/实验报告.md",
+    "实验报告/研究型物理实验/激光干涉阵列扫描实验/未命名.md",
+    "LaTeX Suite.md",
     "Physics/Mathematics/数学分析1.md",
     "Physics/Mathematics/数学分析.md",
-    "LaTeX Suite.md",
-    "实验报告/研究型物理实验/激光干涉阵列扫描实验/实验报告.md",
     "Physics/实验技术/COMSOL.md",
     "Physics/计算/未命名.md",
     "Physics/计算/VASP.md",
@@ -254,7 +240,6 @@
     "Physics/Questions.md",
     "Physics/SolidStatePhysics/固体物理课堂笔记.md",
     "Physics/实验技术/XRD单晶外延生长 数据处理/xrd.md",
-    "README.md",
     "Physics/实验技术/XRD单晶外延生长 数据处理/0916PXRD.png",
     "Physics/实验技术/XRD单晶外延生长 数据处理/output_5_7.png",
     "Physics/实验技术/XRD单晶外延生长 数据处理/output_4_3.png",
