@@ -49,7 +49,8 @@
               "title": "数学分析1"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -81,7 +82,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "单调有界",
                 "matchingCase": true,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -102,7 +103,8 @@
               "title": "书签"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -170,13 +172,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "LaTeX Suite.md",
+                "file": "Physics/Mathematics/数学分析.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "LaTeX Suite 的大纲"
+              "title": "数学分析 的大纲"
             }
           }
         ],
@@ -199,13 +201,14 @@
       "pdf-plus:PDF++: Toggle auto-paste": false
     }
   },
-  "active": "b9a5416fa5f4e517",
+  "active": "c7ed950349b820cc",
   "lastOpenFiles": [
-    "实验报告/研究型物理实验/激光干涉阵列扫描实验/实验报告.md",
-    "实验报告/研究型物理实验/激光干涉阵列扫描实验/未命名.md",
-    "LaTeX Suite.md",
     "Physics/Mathematics/数学分析1.md",
     "Physics/Mathematics/数学分析.md",
+    "实验报告/研究型物理实验/光纤拉制",
+    "LaTeX Suite.md",
+    "实验报告/研究型物理实验/激光干涉阵列扫描实验/实验报告.md",
+    "实验报告/研究型物理实验/激光干涉阵列扫描实验/未命名.md",
     "Physics/实验技术/COMSOL.md",
     "Physics/计算/未命名.md",
     "Physics/计算/VASP.md",
@@ -239,13 +242,11 @@
     "Physics/QuantumMechanics/全同粒子-IdenticalParticals.md",
     "Physics/Questions.md",
     "Physics/SolidStatePhysics/固体物理课堂笔记.md",
-    "Physics/实验技术/XRD单晶外延生长 数据处理/xrd.md",
     "Physics/实验技术/XRD单晶外延生长 数据处理/0916PXRD.png",
     "Physics/实验技术/XRD单晶外延生长 数据处理/output_5_7.png",
     "Physics/实验技术/XRD单晶外延生长 数据处理/output_4_3.png",
     "Physics/实验技术/XRD单晶外延生长 数据处理",
     "Physics/论文阅读/SG Sym in Magn with no SOC-PhysRevX.12.021016.pdf",
-    "Physics/论文阅读/Suppl for SG Sym in Magn with no SOC-240913.pdf",
-    "Physics/实验技术"
+    "Physics/论文阅读/Suppl for SG Sym in Magn with no SOC-240913.pdf"
   ]
 }
