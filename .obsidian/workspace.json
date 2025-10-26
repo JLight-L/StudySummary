@@ -50,7 +50,7 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -82,7 +82,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "单调有界",
+                "query": "",
                 "matchingCase": true,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -103,8 +103,7 @@
               "title": "书签"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -172,13 +171,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Physics/Mathematics/数学分析.md",
+                "file": "Physics/Mathematics/数学分析1.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "数学分析 的大纲"
+              "title": "数学分析1 的大纲"
             }
           }
         ],
@@ -201,10 +200,10 @@
       "pdf-plus:PDF++: Toggle auto-paste": false
     }
   },
-  "active": "c7ed950349b820cc",
+  "active": "2d9ab8db1007ee99",
   "lastOpenFiles": [
-    "Physics/Mathematics/数学分析1.md",
     "Physics/Mathematics/数学分析.md",
+    "Physics/Mathematics/数学分析1.md",
     "实验报告/研究型物理实验/光纤拉制",
     "LaTeX Suite.md",
     "实验报告/研究型物理实验/激光干涉阵列扫描实验/实验报告.md",
