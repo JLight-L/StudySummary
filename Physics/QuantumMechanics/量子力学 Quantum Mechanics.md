@@ -147,9 +147,9 @@ $$
 ## xp关系
 ## 波包
 
-
-# 微扰论
-## 定态微扰理论
+# 近似方法
+## 微扰论
+### 定态微扰理论
 $$\begin{align}
  & H=H_{0}+\lambda W \\
  & \psi_{0}\to \psi_{i} \\
@@ -172,7 +172,7 @@ $$
 (H-\varepsilon_{i;0})\psi_{i;q}+(W-\varepsilon_{i;1})\psi_{i;q-1}-\varepsilon_{i;2}\psi_{i;q-2}-\dots-\varepsilon_{i;q}\psi_{i;0}=0
 $$
 
-### 非简并能级的微扰
+#### 非简并能级的微扰
 能级 $\varepsilon_{0}$ 只有一个态，$\psi_{0}=\psi_{i;0}$ 
 $$
 H_{0}\psi_{i;0}=\varepsilon_{i;0}\psi_{i;0}
@@ -188,7 +188,7 @@ $\psi_{i}$ 在 $\psi_{i}^{0}$ 附近发生偏移。
 	- $\varepsilon_{i;2}=\sum_{p,\psi_{i}\neq \psi_{0}}  \frac{\left|\bra{\psi_{n}^{p}}W\ket{\psi_{0}}\right|^{2}}{\varepsilon_{n}-\varepsilon_{0}}$ 
 	- **解释**：考虑**同行、同列**的矩阵元的影响
 - **🖊总结**：微扰会使能级发生偏移
-### 简并能级的微扰
+#### 简并能级的微扰
 记 $\varepsilon_{0}$ 对应的态为 $\psi_{0}^{p}$ ，有 $\psi_{i;0}=\sum_{p}c_{p}\psi_{0}^{p}$ 
 $\psi_{i}$ 由对 $W$ 限制在 $\psi_{0}^{p}$ 基下进行对角化得到；对角元为 $W_{pq}=\bra{\psi_{0}^{p}}W\ket{\psi_{0}^{q}}$ 
 对角化后再在*新的基*下对哈密顿量做微扰计算（此时微扰中的简并项对应矩阵元为零，$\begin{pmatrix}\varepsilon & 0  & \dots\\ 0 & \varepsilon & \dots \\ \dots & \dots & \dots\end{pmatrix}$ 形式，不影响计算）  #？？？ 真的不影响吗？这是一阶的微扰，那高阶的微扰不会有影响吗？
@@ -201,5 +201,8 @@ $\psi_{i}$ 由对 $W$ 限制在 $\psi_{0}^{p}$ 基下进行对角化得到；对
 
 - **🖊总结**：微扰可能使原本简并的能级发生劈裂；与对称性相关，见[量子力学中的群论](量子力学中的群论-GroupTheoryInQuantumMechanics.md) 
 
-# 量子力学2
-## 定态微扰论
+## 变分法
+
+
+## WKB近似（半经典近似）
+处理**势场V(x)缓变**的情况
