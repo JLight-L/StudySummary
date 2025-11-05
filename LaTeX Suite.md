@@ -5,12 +5,12 @@
 	{trigger: "****", replacement: "**$0**$1", options: "tA"},
 	{trigger: /(?<!\w)([\w])m/, replacement: " $[[0]]$ ", options: "rt"},
 	{trigger: /（([^）\n]*)/, replacement: "（[[0]]）$1", options: "t",priority:-1},
-	{trigger: ", ", replacement: ",\\quad  ", options: "mA"},
+	// {trigger: ", ", replacement: ",\\quad  ", options: "mA"},
 	
 	// My Noting Style
-	{trigger: /(?<=\s)d/, replacement: "**定义**：", options: "rt"},
-	{trigger: /(?<=\s)(- )?p/, replacement: "- **定理**：", options: "rt"},
-	{trigger: /(?<=\s)(- )?pp/, replacement: "- **性质**：", options: "rt"},
+	{trigger: /(?<=\s)d/, replacement: "定义：", options: "rt"},
+	{trigger: /(?<=\s)(- )?p/, replacement: "- 定理：", options: "rt"},
+	{trigger: /(?<=\s)(- )?pp/, replacement: "- 性质：", options: "rt"},
 	{trigger: /(?<=\s)(- )?s/, replacement: "- **🖊总结**：", options: "rt"},
 	{trigger: /(?<=\s)(- )?A/, replacement: "- *Answer* ：", options: "rt"},
 	{trigger: /(?<=\s)(- )?A(\d)/, replacement: "- *Answer* [[1]]：", options: "rt"},
