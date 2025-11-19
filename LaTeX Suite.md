@@ -27,6 +27,7 @@
 	{trigger: /-[>》]/, replacement: " → ", options: "rt"},
 	{trigger: /=[>》]/, replacement: " ⇒ ", options: "rt"},
 	{trigger: /[<《]=[>》]/, replacement: " ⇔ ", options: "rt"},
+	{trigger: / <= /, replacement: " ≤ ", options: "rt"},
 	{trigger: "？？？", replacement: " #？？？ ", options: "t"},
 	{trigger: "。。。", replacement: " #没懂 ", options: "t"},
 	//{trigger: "qq", replacement: "\n>  ？？？ \n> ", options: "t"},
