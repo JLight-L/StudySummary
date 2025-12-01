@@ -21,7 +21,7 @@
 	{trigger: /(?<=\s)(- )?j/, replacement: "- *解释*：", options: "rt"},
 	{trigger: /(?<=\s)(- )?l/, replacement: "- **理解**：", options: "rt"},
 	{trigger: /(?<=\s)(- )?app/, replacement: "- **应用**：", options: "rt"},
-	{trigger: /(?<=\s)(- )?n/, replacement: "- *注*：", options: "rt"},
+	{trigger: /(?<=\s)n/, replacement: "*注*：", options: "rt"},
 	{trigger: /(?<=\s)(- )?coro/, replacement: "- *推论*：", options: "rt"}, // corollary
 	{trigger: /(?<=\s)(- )?coro(\d)/, replacement: "- *推论* [[1]]：", options: "rt"},
 	{trigger: /-[>》]/, replacement: " → ", options: "rt"},

@@ -59,10 +59,6 @@ $[A,H]=0$ 时， $A$ 称为体系的对称算符，即 $AHA^{-1}=H$ ，如 $T(a)
 
 在求解问题时，可以通过寻找相互对应的算符来寻找哈密顿量的本征值与本征态
 
-### 变分法与本征值
-
-- **定理**：（里兹定理）算符的期望值在且仅在本征值附近稳定，即 $\left< H \right> =\frac{\bra{\psi}H\ket{\psi}}{\braket{ \psi | \psi }}$ 在 $\ket{\psi}\to \ket{\psi}+\delta \ket{\psi}$ 下不变时，即取到本征值
-- **应用**：可以通过猜测一些试探右矢（用一些参数来表示不同试探右矢）来尝试逼近真实本征值；选取的试探右矢形式与实际本征矢越接近，得到的能量越准确。
 
 ## 时间演化
 
@@ -148,77 +144,4 @@ $$
 ## 波包
 
 # 近似方法
-## 微扰论
-### 定态微扰理论
-$$\begin{align}
- & H=H_{0}+\lambda W \\
- & \psi_{0}\to \psi_{i} \\
- & \varepsilon_{0}\to\varepsilon_{i}
-\end{align}
-$$
-
-当 $\lambda$ 很小时（即  $\lambda W$ 的所有矩阵元都很小时），本征态和本征能量怎么变化？
-
-对 $\lambda$ 在 $0$ 附近展开（前提条件：能量、波函数均保持收敛）：
-$$
-\begin{align}
- & \varepsilon_{i}=\varepsilon_{i;0}+\lambda\varepsilon_{i;1}+\lambda^{2}\varepsilon_{i;2}+\dots \\
- & \psi_{i}=\psi_{i;0}+\lambda \psi_{i;1}+\lambda^{2}\psi_{i;2}+\dots
-\end{align}
-$$
-
-**q阶项**
-$$
-(H-\varepsilon_{i;0})\psi_{i;q}+(W-\varepsilon_{i;1})\psi_{i;q-1}-\varepsilon_{i;2}\psi_{i;q-2}-\dots-\varepsilon_{i;q}\psi_{i;0}=0
-$$
-
-#### 非简并能级的微扰
-能级 $\varepsilon_{0}$ 只有一个态，$\psi_{0}=\psi_{i;0}$ 
-$$
-H_{0}\psi_{i;0}=\varepsilon_{i;0}\psi_{i;0}
-$$
-$\psi_{i}$ 在 $\psi_{i}^{0}$ 附近发生偏移。
-
-- **一级微扰**
-	- $\varepsilon_{i;1}=\bra{\psi_{i}^{0}}W\ket{\psi_{i}^{0}}$ 
-	- **解释**：相当于考虑**对角**矩阵元
-	- $\braket{\psi_{n}^{p}|\psi_{i;1}}=\sum_{p,\psi_{i}\neq \psi_{0}}  \frac{\bra{\psi_{n}^{p}}W\ket{\psi_{0}}}{\varepsilon_{n}-\varepsilon_{0}}$  
-		- *注*：态发生**小偏移**还要求 $W$ 的 非对角元 $\ll$ 对应的能级差
-- 二级微扰
-	- $\varepsilon_{i;2}=\sum_{p,\psi_{i}\neq \psi_{0}}  \frac{\left|\bra{\psi_{n}^{p}}W\ket{\psi_{0}}\right|^{2}}{\varepsilon_{n}-\varepsilon_{0}}$ 
-	- **解释**：考虑**同行、同列**的矩阵元的影响
-- **🖊总结**：微扰会使能级发生偏移
-#### 简并能级的微扰
-记 $\varepsilon_{0}$ 对应的态为 $\psi_{0}^{p}$ ，有 $\psi_{i;0}=\sum_{p}c_{p}\psi_{0}^{p}$ 
-$\psi_{i}$ 由对 $W$ 限制在 $\psi_{0}^{p}$ 基下进行对角化得到；对角元为 $W_{pq}=\bra{\psi_{0}^{p}}W\ket{\psi_{0}^{q}}$ 
-对角化后再在*新的基*下对哈密顿量做微扰计算（此时微扰中的简并项对应矩阵元为零，$\begin{pmatrix}\varepsilon & 0  & \dots\\ 0 & \varepsilon & \dots \\ \dots & \dots & \dots\end{pmatrix}$ 形式，不影响计算）  #？？？ 真的不影响吗？这是一阶的微扰，那高阶的微扰不会有影响吗？
- #？？？ 高阶微扰如何计算？（牵扯到其它对角元）
- #？？？ 同样是对角化，为什么在对角元相等的时候会出现奇异？（或者问 简并微扰的处理上和非简并有什么区别？为什么）
-
-- *注*：简并的消除也可以在非简并微扰的公式中看出，即分母为 $0$ （能量的*二阶近似*中可以看出）；但此时该公式是错误的
-- 简并破缺的情况*不会在一阶微扰中*体现；对角化后的对角项可以近似为…… #？？？ 
-- 
-
-- **🖊总结**：微扰可能使原本简并的能级发生劈裂；与对称性相关，见[量子力学中的群论](量子力学中的群论-GroupTheoryInQuantumMechanics.md) 
-
-## 变分法
-
-
-## WKB近似（半经典近似）
-处理**势场V(x)缓变**的情况
-
-
-## 含时微扰
-
-
-### 光的发射与吸收
-
-
- #？？？ 如何理解电子跃迁对光的影响？
-#### 自发辐射
-真空涨落/背景辐射，多频率多方向叠加（非相干）
-
-#### 选择定则
-$m'-m=\begin{cases}\pm 1, & \text{x, y;} \\ 0, & \text{z.}\end{cases}$ ，可由对易关系 $[L_{i},r_{j}]=i\hbar\epsilon_{ijk}r_{k}$ 推出；
-$l'-l=\pm 1$ ，可由对易关系 $[L^{2}[L^{2},r_{i}]]=2\hbar^{2}(r_{i}L^{2}+L^{2}r_{i})$ 推出。
- #？？？ 有没有可能有更加严苛的条件？这里的推导只是给出可能可以的情况
+[量子力学近似方法](量子力学近似方法.md) 
