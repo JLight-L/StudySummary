@@ -102,10 +102,60 @@
 
 - d **一致收敛**：$\forall\varepsilon,\exists N,$ 使得 $\forall n\geq N,\forall x\in E,\ \left| f_{n}(x)-f(x) \right|<\varepsilon$ 
     - 保证对于**所有 x** ，都有一个**共同的**最低收敛速度
+        - *注*：逐点收敛（pointwise）：$\forall x,\forall \varepsilon,\exists N,\text{such that }\forall n>N,\left| f_{n}(x)-f(x) \right|<\varepsilon$ 
+    - **例**：收敛但不一致收敛的例子：
+        - $f_{n}(x)=x^{n}\text{ for }x \in [0,1],\ f(x)=\begin{cases}0, & 0\leq x< 1 \\ 1, & x=1\end{cases}$ 
+        - $f_n(x) = \frac{nx}{1 + n^2 x^2}\text{ for }x \in [0,1],\ f(x) = 0$ 
     - **等价定义**：$\forall\varepsilon,\exists N,$ 使得 $\forall m,n>N,\forall x \in E,\ \left| f_{n}(x)-f_{m}(x) \right|<\varepsilon$ 
-    - p $f_{n}\to f$ ，记 $M_{n}=\mathrm{sup}_{x \in E}\left| f_{n}(x)-f(x) \right|$ ，若 $M_{n}\to 0$ ，则一致收敛
+        - 等价原因：实空间完备，点列一定Cauchy
+    - p 利用**第n项与极限函数差的上界**逼近：$f_{n}\to f$ ，记 $M_{n}=\mathrm{sup}_{x \in E}\left| f_{n}(x)-f(x) \right|$ ，若 $M_{n}\to 0$ ，则一致收敛
+        - 第n项与极限函数差的上界 → 0 ⇒ 一致收敛
+    - p 利用**函数上界**逼近：$\forall x \in E,|f_{n}(x)|\leq M_{n},M_{n}\text{ 收敛}\implies \text{一致收敛}$ 
+    - p **一致收敛保护连续性** 
+        - 更严格的条件：*紧空间*上的1. *连续函数列*，2. *逐点收敛*到一个*连续函数*，3. $f_{n}(x)\geq f_{n+1}(x),\forall x$ ，即每点单调递减 ⇒ 一致收敛
+            - 没有紧空间条件的反例：$f_{n}(x)=\frac{1}{nx+1}\text{ in }(0,1),\ f(x)=0$ 。对于任何n，总有一个很小的x → 0，使函数远离0（靠近1）。若扩展到 $[0,1]$ 上，则 $f(0)=1\neq 1$ ，不满足极限函数连续的条件
+    - p **一致连续保护可积性及积分值** 
+    - p **一致连续保护导数**：对于可微函数 $f_{n}$ ，定义域 $[a,b]$ ，1. $\exists z,f_{n}(z)$ 收敛，2. 导数列一致收敛 ⇒ $\exists f,f'=\lim_{ n \to \infty }f'_{n}$ 
+    - 
+- *注*：上述收敛性定义可从 $f:E\to \mathbb{R}$ 拓展到 $f:X\to Y$ ，绝对值即对应距离
+- 
 
 
 - d **函数项级数**：$f(x) = \sum_{n=1}^{\infty}f_{n}(x)$ 
 - p 函数项级数一致收敛条件：使用函数列一致收敛条件
 - ……
+
+---
+**赋范空间（normed space）** 
+- 定义 **范数（norm）**：向量空间（线性空间）上 $\|\cdot\|: X \to [0,\infty)$ ，满足：
+    1. **正定性**：$\|x\| = 0 \iff x = 0$；
+    2. **齐次性**：$\|\lambda x\| = |\lambda|\|x\|$，$\forall \lambda \in \mathbb{K}$；
+    3. **三角不等式**：$\|x+y\| \leq \|x\| + \|y\|$。
+- 赋范空间 $(X,\|\cdot\|)$ 自然**诱导度量** $d(x,y) = \|x-y\|$ ，对应一个度量空间
+- d **Banach空间**：诱导度量空间**完备**的赋范空间
+- **例**：（以下均为Banach空间）
+    1. $(\mathbb{R}^{d},\|\cdot\|),\|(x_{1},\dots,x_{d})\|=(\sum x_{i}^{2})^{1/2}$
+    2. $\mathbb{K}^d=\mathbb{R}^{d}\text{ or }\mathbb{C}^{d}$ 上，$\begin{cases}\|x\|_p = \left( \sum_{i=1}^d |x_i|^p \right)^{1/p}, \quad 1 \leq p < \infty \\ \|x\|_\infty = \max_{1 \leq i \leq d} |x_i|\end{cases}$ 
+    3. $C([a,b])=\left\{ f:[a,b]\to \mathbb{R} |f\text{ continuous}\right\}$ 上，
+        - $\|f\|_{1}=\int_{a}^{b}|f(t)|dt$ 
+        - $\|f\|_{2}=\mathrm{max}_{t\in[a,b]}|f(t)|$ 
+- p **范数是连续映射** 
+
+
+- 赋范空间的**同构** 
+    - d **同构（isomorphic）**：$\exists T:X\to Y$ 为线性映射，且 $\exists c_{1},c_{2}>0,c_{1}\|x\|_{1}\leq\|T(x)\|_{2}\leq c_{2}\|x\|_{1},\forall x\in X$ 
+        - 记为：$X\cong Y$
+        - *注*：向量空间的同构：存在线性双射联系两个向量空间
+    - d **等距同构（isometrically isomorphic）**：$\exists T:X\to Y$ 为线性映射，且 $\|T(x)\|_{2}\leq \|x\|_{1},\forall x\in X$ 
+- 范数的**等价性（equivalent）**：$\|\cdot\|_{1},\|\cdot\|_{2}$ on X
+    - d $\exists c_{1},c_{2}>0,c_{1}\|x\|_{1}\leq\|x\|_{2}\leq c_{2}\|x\|_{1},\forall x\in X$ 
+        - 即 $(X,\|\cdot\|_{1})$ 和 $(X,\|\cdot\|_{2})$ 同构
+        - 记为：$\|\cdot\|_{1}\sim \|\cdot\|_{2}$ 
+    - p 等价性具有**传递性**
+    - p 若 $\|\cdot\|_{1}\sim \|\cdot\|_{2}$ ，则 $(X,\lVert \cdot \rVert_{1})$ 中的开集 ⇔  $(X,\lVert \cdot \rVert_{2})$ 中的开集
+    - p **有限维向量空间中所有范数等价** 
+
+
+
+---
+
