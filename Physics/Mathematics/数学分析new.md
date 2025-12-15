@@ -1,4 +1,4 @@
-
+ 
 - d 在x处不连续：左右极限存在-简单不连续（第一类）；else 第二类
     - p 左极限的等价定义（直接用距离而不是点列，其实我觉得没什么区别）$f:(a,b):\quad f(x-) = A \iff \forall \varepsilon > 0, \exists \delta > 0\text{ with } a < x - \delta, \forall t\in (x - \delta, x),|f(t) - A| < \varepsilon$ 
 - d 单调函数：$f: X \to \mathbb{R}$，若 $y > x \Rightarrow f(y) \geq f(x)$ 则为单调递增；若 $f(y) > f(x)$ 则为严格单调递增
@@ -93,6 +93,8 @@
 
 - d $\left\{ f_{n} \right\},f_{n}:E\to \mathbb{R}$ 
 - d **极限函数**：$f(x)=\lim_{ n \to \infty }f_{n}(x)$ ；极限函数存在则**函数列收敛**
+- d **函数项级数**：$f(x) = \sum_{n=1}^{\infty}f_{n}(x)$ 
+    - 函数项级数一致收敛条件：使用函数列一致收敛条件
 
 > **Question**：函数的性质是否被极限运算保持？（函数的一些运算操作是否可以和极限运算交换）
 
@@ -130,9 +132,6 @@
 - 
 
 
-- d **函数项级数**：$f(x) = \sum_{n=1}^{\infty}f_{n}(x)$ 
-- p 函数项级数一致收敛条件：使用函数列一致收敛条件
-- ……
 
 ---
 **赋范空间（normed space）** 
@@ -170,20 +169,33 @@
 
 - d $\mathscr{C}(X)$ 表示所有定义在 $X$ （一个度量空间）上的**复值、连续、有界函数**构成的集合
     -  $X$ 中使用**上确界范数**：$\|f\| = \sup_{x \in X} |f(x)|$ ，可构成赋范空间 ^e69fd9
-    -  $\mathscr{C}(X)$ 是完备度量空间
+    - p $\mathscr{C}(X)$ 是完备度量空间
 - d $\mathscr{F}(X;\mathbb{K})$ 表示 $X$ 上的所有有界函数
-    - 在上确界范数 $\|f\|_{\infty} = \sup_{x \in X} |f(x)|$ 下，**完备** 
+    - p 在上确界范数 $\|f\|_{\infty} = \sup_{x \in X} |f(x)|$ 下，**完备** 
 - d $C^{1}([a,b])$ 表示所有连续可微函数（指的是导数连续，continuously differentiable）
-    - 在范数 $\lVert f \rVert_{C^{1}}=\|f\|_{\infty}+\|f'\|_{\infty}$ 下，**完备** 
+    - p 在范数 $\lVert f \rVert_{C^{1}}=\|f\|_{\infty}+\|f'\|_{\infty}$ 下，**完备** 
 
 
 
 
 
-可数集-》数，|fn(x)|<phi(x)<inf
+可数集-》数，|fn(x)|<phi(x)< inf
 	=》存在收敛子列
 
 紧集-》数，有界，等度（equicontinuous）
 	=》一致有界，且存在一致收敛子列
 
 全有界度量空间可分（有可数稠密子集）
+
+
+……
+……
+
+**多元函数**：$f:\Omega(\subset \mathbb{R}^{n})\to \mathbb{R}^{m}$ 
+d 导数定义与之前相同 #Really？ 
+d **偏导数**：……
+    p 某点导数存在则偏导数存在
+    偏导数存在不一定连续
+d **方向导数**
+d **梯度**
+p 方向导数为梯度与该方向单位向量的内积
